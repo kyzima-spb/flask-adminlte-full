@@ -1,0 +1,212 @@
+{% macro flash_messages(messages) %}
+  {% if messages %}
+    <div class="flash-messages-box">
+      {% for m in messages %}
+        <div class="alert alert-{{ m.level }} alert-dismissible {{ m.styles }}">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon {{ m.icon }}"></i> {{ m.title }}</h5>
+          {{ m.text }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+
+{%- macro user_sidebar_panel(user, profile_url) -%}
+  {% if not config['ADMINLTE_LEGACY_USER_MENU'] and user.is_authenticated %}
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="{{ user.email | gravatar }}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a href="{{ profile_url }}" class="d-block">{{ user }}</a>
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+
+{% macro legacy_user_menu(user, profile_url) -%}
+  {% if user.is_authenticated %}
+    {% if config['ADMINLTE_LEGACY_USER_MENU'] %}
+      <li class="nav-item dropdown user-menu">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+          <img src="{{ user.email | gravatar }}" class="user-image img-circle elevation-2" alt="User Image">
+          <span class="d-none d-md-inline">{{ user }}</span>
+        </a>
+        {% include 'adminlte_full/includes/legacy_user_dropdown.html' %}
+      </li>
+    {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for(config['ADMINLTE_LOGOUT_ENDPOINT']) }}">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </li>
+    {% endif %}
+  {% endif %}
+{%- endmacro %}
+
+
+{% macro messages_menu(messages) -%}
+  <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+      <i class="far fa-comments"></i>
+      <span class="badge badge-danger navbar-badge">{{ messages.get_total() }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <span class="dropdown-item dropdown-header">{{ messages.get_total() }} Messages</span>
+      <div class="dropdown-divider"></div>
+      {% for m in messages %}
+        <a href="{{ m.url }}" class="dropdown-item">
+          <div class="media">
+            <img src="{{ m.sender.email | gravatar }}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                {{ m.sender }}
+                <span class="float-right text-sm text-{{ m.color }}"><i class="{{ m.icon }}"></i></span>
+              </h3>
+              <p class="text-sm">{{ m.subject }}</p>
+              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> {{ m.sent_at | humanize }}</p>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-divider"></div>
+      {% endfor %}
+      <a href="{{ messages.get_url() }}" class="dropdown-item dropdown-footer">See All Messages</a>
+    </div>
+  </li>
+{%- endmacro %}
+
+
+{% macro notifications_menu(notifications) -%}
+  <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+      <i class="far fa-bell"></i>
+      <span class="badge badge-warning navbar-badge">{{ notifications.get_total() }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <span class="dropdown-item dropdown-header">{{ notifications.get_total() }} Notifications</span>
+      <div class="dropdown-divider"></div>
+      {% for notice in notifications %}
+        <a href="{{ notice.url }}" class="dropdown-item">
+          <i class="{{ notice.icon }} mr-2 text-{{ notice.color }}"></i> {{ notice.text }}
+          <span class="float-right text-muted text-sm">{{ notice.sent_at | humanize }}</span>
+        </a>
+        <div class="dropdown-divider"></div>
+      {% endfor %}
+      <a href="{{ notifications.get_url() }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+    </div>
+  </li>
+{%- endmacro %}
+
+
+{% macro tasks_menu(tasks) -%}
+  <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+      <i class="far fa-flag"></i>
+      <span class="badge badge-success navbar-badge">{{ tasks.get_total() }}</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <span class="dropdown-item dropdown-header">{{ tasks.get_total() }} Tasks</span>
+      <div class="dropdown-divider"></div>
+      {% for task in tasks %}
+        <a href="{{ task.url }}" class="dropdown-item">
+          <div class="progress-group">
+            {{ task.title }}
+            <span class="float-right"><b>{{ task.progress }}</b>/100</span>
+            <div class="progress progress-sm">
+              <div class="progress-bar bg-{{ task.color }}" style="width: {{ task.progress }}%"></div>
+            </div>
+          </div>
+        </a>
+        <div class="dropdown-divider"></div>
+      {% endfor %}
+      <a href="{{ tasks.get_url() }}" class="dropdown-item dropdown-footer">See all tasks</a>
+    </div>
+  </li>
+{%- endmacro %}
+
+
+{% macro search_form(action, method='post') -%}
+  <form class="form-inline ml-0 ml-md-3" method="{{ method }}"{% if action %}action="{{ action }}"{% endif %}>
+    <div class="input-group input-group-sm">
+      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-navbar" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+{%- endmacro %}
+
+
+{% macro sidebar_menu(items, is_submenu=0) -%}
+  {% if not is_submenu %}
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+  {% endif %}
+  {% for item in items %}
+    {% if item.type == item.TYPE_HEADER %}
+      <li class="nav-header">{{ item.title }}</li>
+    {% elif item.type == item.TYPE_LINK %}
+      <li class="nav-item{% if item.has_children() %} has-treeview{% endif %}">
+        <a class="nav-link{% if item.is_active() %} active{% endif %}" href="{{ item.url }}" title="{{ item.help }}">
+          <i class="nav-icon {% if item.icon %}{{ item.icon }}{% else %}far fa-circle{% endif %}"></i>
+          <p>
+            {{ item.title }}
+            {% if item.has_children() %}
+              <i class="right fas fa-angle-left"></i>
+            {% endif %}
+            {% if item.badge %}
+              <span class="right badge badge-{{ item.badge.1 }}">{{ item.badge.0 }}</span>
+            {% endif %}
+          </p>
+        </a>
+        {% if item.has_children() %}
+          <ul class="nav nav-treeview">
+            {{ sidebar_menu(items=item.children, is_submenu=1) }}
+          </ul>
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+  {% if not is_submenu %}</ul>{% endif %}
+{%- endmacro %}
+
+
+{% macro navbar_menu(items) -%}
+  {% for item in items %}
+    {% if item.type == item.TYPE_LINK %}
+      <li class="nav-item {% if item.is_active() %} active{% endif %}{% if item.has_children() %} dropdown{% endif %}">
+        {% if item.has_children() %}
+          {{ navbar_dropdown(item=item) }}
+        {% else %}
+          <a class="nav-link" href="{{ item.url }}" title="{{ item.help }}">{{ item.title }}</a>
+        {% endif %}
+      </li>
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}
+
+
+{% macro navbar_dropdown(item, is_submenu=0) -%}
+  <a id="menu_item_{{ item.id }}" class="{% if is_submenu %}dropdown-item{% else %}nav-link{% endif %} dropdown-toggle" href="{{ item.url }}" title="{{ item.help }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+    {{ item.title }}
+  </a>
+  <ul aria-labelledby="menu_item_{{ item.id }}" class="dropdown-menu border-0 shadow">
+    {% for child in item.children %}
+      {% if child.type == child.TYPE_LINK %}
+        <li class="{% if child.has_children() %}dropdown-submenu dropdown-hover{% endif %}">
+          {% if child.has_children() %}
+            {{ navbar_dropdown(item=child, is_submenu=1) }}
+          {% else %}
+            <a class="dropdown-item" href="{{ child.url }}" title="{{ child.help }}">{{ child.title }}</a>
+          {% endif %}
+        </li>
+      {% elif child.type == child.TYPE_DROPDOWN_DIVIDER %}
+        <li class="dropdown-divider"></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{%- endmacro %}
