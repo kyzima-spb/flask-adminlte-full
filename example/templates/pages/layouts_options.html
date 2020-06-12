@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% import "adminlte_full/widgets.html" as widgets %}
+{% import "adminlte_full/macros/widgets.html" as widgets %}
 
 {% block page_title %}{{ title }} Layout{% endblock %}
 
 {% block body_attributes %} class="hold-transition {{ layout|join(' ') }}"{% endblock %}
 
 {% block page_content %}
-  {% call widgets.render_card('How to use', color=THEME_COLOR.PRIMARY, outline=true) %}
+  {% call widgets.render_card('How to use', color=ThemeColor.PRIMARY, outline=true) %}
     <div class="card-body">
       <p>In the application settings, set the parameter <code>ADMINLTE_LAYOUT</code> to:</p>
       <table class="table">

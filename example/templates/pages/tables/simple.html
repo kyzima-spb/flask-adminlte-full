@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "adminlte_full/widgets.html" as widgets %}
+{% import "adminlte_full/macros/widgets.html" as widgets %}
 {% import "adminlte_full/macros/bootstrap4.html" as bootstrap %}
 
 {% block page_title %}Simple Tables{% endblock %}
@@ -20,7 +20,7 @@
           {% endcall %}
         </div>
         <div class="card-footer clearfix">
-          {{ bootstrap.render_pagination(pages, pagination_class='pagination-sm m-0 float-right') }}
+          {{ bootstrap.pagination(pages, pagination_class='pagination-sm m-0 float-right') }}
         </div>
       {% endcall %}
 
@@ -44,7 +44,7 @@
         <div class="card-header">
           <h3 class="card-title">Simple Full Width Table</h3>
           <div class="card-tools">
-            {{ bootstrap.render_pagination(pages, pagination_class='pagination-sm float-right') }}
+            {{ bootstrap.pagination(pages, pagination_class='pagination-sm float-right') }}
           </div>
         </div>
         <div class="card-body p-0">

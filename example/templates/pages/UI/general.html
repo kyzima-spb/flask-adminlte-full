@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "adminlte_full/widgets.html" as widgets %}
+{% import "adminlte_full/macros/widgets.html" as widgets %}
 
 {% macro palette_set(title, color, hex, light=false) %}
   <h4 class="text-center{% if light %} bg-light{% endif %}">{{ title }}</h4>
@@ -18,37 +18,37 @@
         <h5>THEME_COLOR (Theme Colors)</h5>
       </div>
       <div class="row">
-        <div class="col-sm-4 col-md-2">{{ palette_set('PRIMARY', THEME_COLOR.PRIMARY, '#007bff') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('SECONDARY', THEME_COLOR.SECONDARY, '#6c757d') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('INFO', THEME_COLOR.INFO, '#17a2b8') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('SUCCESS', THEME_COLOR.SUCCESS, '#28a745') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('WARNING', THEME_COLOR.WARNING, '#ffc107') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('DANGER', THEME_COLOR.DANGER, '#dc3545') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('PRIMARY', ThemeColor.PRIMARY, '#007bff') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('SECONDARY', ThemeColor.SECONDARY, '#6c757d') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('INFO', ThemeColor.INFO, '#17a2b8') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('SUCCESS', ThemeColor.SUCCESS, '#28a745') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('WARNING', ThemeColor.WARNING, '#ffc107') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('DANGER', ThemeColor.DANGER, '#dc3545') }}</div>
       </div>
       <div class="col-12">
         <h5 class="mt-3">Black/White Nuances</h5>
       </div>
       <div class="row">
-        <div class="col-sm-4 col-md-2">{{ palette_set('BLACK', THEME_COLOR.BLACK, '#000000') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('GRAY_DARK', THEME_COLOR.GRAY_DARK, '#343a40') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('GRAY', THEME_COLOR.GRAY, '#adb5bd') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('LIGHT', THEME_COLOR.LIGHT, '#1f2d3d', light=true) }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('BLACK', ThemeColor.BLACK, '#000000') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('GRAY_DARK', ThemeColor.GRAY_DARK, '#343a40') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('GRAY', ThemeColor.GRAY, '#adb5bd') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('LIGHT', ThemeColor.LIGHT, '#1f2d3d', light=true) }}</div>
       </div>
       <div class="col-12">
         <h5 class="mt-3">Colors</h5>
       </div>
       <div class="row">
-        <div class="col-sm-4 col-md-2">{{ palette_set('INDIGO', THEME_COLOR.INDIGO, '#6610f2') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('LIGHTBLUE', THEME_COLOR.LIGHTBLUE, '#3c8dbc') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('NAVY', THEME_COLOR.NAVY, '#001f3f') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('PURPLE', THEME_COLOR.PURPLE, '#605ca8') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('FUCHSIA', THEME_COLOR.FUCHSIA, '#f012be') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('PINK', THEME_COLOR.PINK, '#e83e8c') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('MAROON', THEME_COLOR.MAROON, '#d81b60') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('ORANGE', THEME_COLOR.ORANGE, '#ff851b') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('LIME', THEME_COLOR.LIME, '#01ff70') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('TEAL', THEME_COLOR.TEAL, '#39cccc') }}</div>
-        <div class="col-sm-4 col-md-2">{{ palette_set('OLIVE', THEME_COLOR.OLIVE, '#3d9970') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('INDIGO', ThemeColor.INDIGO, '#6610f2') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('LIGHTBLUE', ThemeColor.LIGHTBLUE, '#3c8dbc') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('NAVY', ThemeColor.NAVY, '#001f3f') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('PURPLE', ThemeColor.PURPLE, '#605ca8') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('FUCHSIA', ThemeColor.FUCHSIA, '#f012be') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('PINK', ThemeColor.PINK, '#e83e8c') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('MAROON', ThemeColor.MAROON, '#d81b60') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('ORANGE', ThemeColor.ORANGE, '#ff851b') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('LIME', ThemeColor.LIME, '#01ff70') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('TEAL', ThemeColor.TEAL, '#39cccc') }}</div>
+        <div class="col-sm-4 col-md-2">{{ palette_set('OLIVE', ThemeColor.OLIVE, '#3d9970') }}</div>
       </div>
     </div>
   {% endcall %}

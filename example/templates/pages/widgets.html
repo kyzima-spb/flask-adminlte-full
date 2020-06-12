@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% import "adminlte_full/widgets.html" as widgets %}
+{% import "adminlte_full/macros/widgets.html" as widgets %}
 {% import 'adminlte_full/macros/bootstrap4.html' as bootstrap %}
 
 {% block breadcrumb %}
@@ -13,16 +13,16 @@
   <h5 class="mb-2">Info Box</h5>
   <div class="row">
     <div class="col-md-3 col-sm-6 col-12">
-      {{ widgets.render_info_box('Messages', '1,410', icon='far fa-envelope', color=THEME_COLOR.INFO) }}
+      {{ widgets.render_info_box('Messages', '1,410', icon='far fa-envelope', color=ThemeColor.INFO) }}
     </div>
     <div class="col-md-3 col-sm-6 col-12">
-      {{ widgets.render_info_box('Bookmarks', '410', icon='far fa-flag', color=THEME_COLOR.SUCCESS) }}
+      {{ widgets.render_info_box('Bookmarks', '410', icon='far fa-flag', color=ThemeColor.SUCCESS) }}
     </div>
     <div class="col-md-3 col-sm-6 col-12">
-      {{ widgets.render_info_box('Uploads', '13,648', icon='far fa-copy', color=THEME_COLOR.WARNING) }}
+      {{ widgets.render_info_box('Uploads', '13,648', icon='far fa-copy', color=ThemeColor.WARNING) }}
     </div>
     <div class="col-md-3 col-sm-6 col-12">
-      {{ widgets.render_info_box('Likes', '93,139', icon='far fa-star', color=THEME_COLOR.DANGER) }}
+      {{ widgets.render_info_box('Likes', '93,139', icon='far fa-star', color=ThemeColor.DANGER) }}
     </div>
   </div>
 
@@ -32,7 +32,7 @@
       {{ widgets.render_info_box
          (
            'Bookmarks', '41,410',
-           icon='far fa-bookmark', bg_color=THEME_COLOR.INFO,
+           icon='far fa-bookmark', bg_color=ThemeColor.INFO,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -41,7 +41,7 @@
       {{ widgets.render_info_box
          (
            'Likes', '41,410',
-           icon='far fa-thumbs-up', bg_color=THEME_COLOR.SUCCESS,
+           icon='far fa-thumbs-up', bg_color=ThemeColor.SUCCESS,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -50,7 +50,7 @@
       {{ widgets.render_info_box
          (
            'Events', '41,410',
-           icon='far fa-calendar-alt', bg_color=THEME_COLOR.WARNING,
+           icon='far fa-calendar-alt', bg_color=ThemeColor.WARNING,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -59,7 +59,7 @@
       {{ widgets.render_info_box
          (
            'Comments', '41,410',
-           icon='fas fa-comments', bg_color=THEME_COLOR.DANGER,
+           icon='fas fa-comments', bg_color=ThemeColor.DANGER,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -72,7 +72,7 @@
       {{ widgets.render_info_box
          (
            'Bookmarks', '41,410',
-           icon='far fa-bookmark', bg_color=THEME_COLOR.GRADIENT_INFO,
+           icon='far fa-bookmark', bg_color=ThemeColor.GRADIENT_INFO,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -81,7 +81,7 @@
       {{ widgets.render_info_box
          (
            'Likes', '41,410',
-           icon='far fa-thumbs-up', bg_color=THEME_COLOR.GRADIENT_SUCCESS,
+           icon='far fa-thumbs-up', bg_color=ThemeColor.GRADIENT_SUCCESS,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -90,7 +90,7 @@
       {{ widgets.render_info_box
          (
            'Events', '41,410',
-           icon='far fa-calendar-alt', bg_color=THEME_COLOR.GRADIENT_WARNING,
+           icon='far fa-calendar-alt', bg_color=ThemeColor.GRADIENT_WARNING,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -99,7 +99,7 @@
       {{ widgets.render_info_box
          (
            'Comments', '41,410',
-           icon='fas fa-comments', bg_color=THEME_COLOR.GRADIENT_DANGER,
+           icon='fas fa-comments', bg_color=ThemeColor.GRADIENT_DANGER,
            progress=70, progress_description='70% Increase in 30 Days'
          )
       }}
@@ -109,33 +109,33 @@
   <h5 class="mb-2 mt-4">Small Box</h5>
   <div class="row">
     <div class="col-lg-3 col-6">
-      {{ widgets.render_small_box(150, 'New Orders', url='#', color=THEME_COLOR.INFO, icon='fas fa-shopping-cart') }}
+      {{ widgets.render_small_box(150, 'New Orders', url='#', color=ThemeColor.INFO, icon='fas fa-shopping-cart') }}
     </div>
     <div class="col-lg-3 col-6">
       {{ widgets.render_small_box(
             '53<sup style="font-size: 20px">%</sup>', 'Bounce Rate', url='#',
-            color=THEME_COLOR.SUCCESS, icon='ion ion-stats-bars'
+            color=ThemeColor.SUCCESS, icon='ion ion-stats-bars'
          )
       }}
     </div>
     <div class="col-lg-3 col-6">
-      {{ widgets.render_small_box(44, 'User Registrations', url='#', color=THEME_COLOR.WARNING, icon='fas fa-user-plus') }}
+      {{ widgets.render_small_box(44, 'User Registrations', url='#', color=ThemeColor.WARNING, icon='fas fa-user-plus') }}
     </div>
     <div class="col-lg-3 col-6">
-      {{ widgets.render_small_box(65, 'Unique Visitors', url='#', color=THEME_COLOR.DANGER, icon='fas fa-chart-pie') }}
+      {{ widgets.render_small_box(65, 'Unique Visitors', url='#', color=ThemeColor.DANGER, icon='fas fa-chart-pie') }}
     </div>
   </div>
   <div class="row">
     <div class="col-lg-3 col-6">
       {{ widgets.render_small_box(
-             150, 'New Orders', url='#', color=THEME_COLOR.INFO, icon='fas fa-shopping-cart', overlay=true
+             150, 'New Orders', url='#', color=ThemeColor.INFO, icon='fas fa-shopping-cart', overlay=true
          )
       }}
     </div>
     <div class="col-lg-3 col-6">
       {{ widgets.render_small_box(
             '53<sup style="font-size: 20px">%</sup>', 'Bounce Rate', url='#',
-            color=THEME_COLOR.SUCCESS, icon='ion ion-stats-bars', overlay_dark=true
+            color=ThemeColor.SUCCESS, icon='ion ion-stats-bars', overlay_dark=true
          )
       }}
     </div>
@@ -145,16 +145,16 @@
   <h5 class="mb-2">Abilities</h5>
   <div class="row">
     <div class="col-md-3">
-      {{ widgets.render_card(title='Expandable', expandable=true, color=THEME_COLOR.PRIMARY, body='The body of the card') }}
+      {{ widgets.render_card(title='Expandable', expandable=true, color=ThemeColor.PRIMARY, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Collapsable', collapsable=true, color=THEME_COLOR.SUCCESS, body='The body of the card') }}
+      {{ widgets.render_card(title='Collapsable', collapsable=true, color=ThemeColor.SUCCESS, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Removable', closable=true, color=THEME_COLOR.WARNING, body='The body of the card') }}
+      {{ widgets.render_card(title='Removable', closable=true, color=ThemeColor.WARNING, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Maximizable', maximizable=true, color=THEME_COLOR.DANGER, body='The body of the card') }}
+      {{ widgets.render_card(title='Maximizable', maximizable=true, color=ThemeColor.DANGER, body='The body of the card') }}
     </div>
   </div>
   <div class="row">
@@ -162,7 +162,7 @@
       {{ widgets.render_card(title='Card Refresh',
                              data_source=url_for('widgets'),
                              refreshable_options='data-source-selector="#card-refresh-content"',
-                             color=THEME_COLOR.PRIMARY,
+                             color=ThemeColor.PRIMARY,
                              body='The body of the card') }}
       <div class="d-none" id="card-refresh-content">
         The body of the card after card refresh
@@ -175,72 +175,72 @@
                              closable=true,
                              data_source=url_for('widgets'),
                              refreshable_options='data-source-selector="#card-refresh-content" data-load-on-init="false"',
-                             color=THEME_COLOR.SUCCESS,
+                             color=ThemeColor.SUCCESS,
                              body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Loading state', color=THEME_COLOR.WARNING, body='The body of the card', overlay=true) }}
+      {{ widgets.render_card(title='Loading state', color=ThemeColor.WARNING, body='The body of the card', overlay=true) }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Loading state (dark)', color=THEME_COLOR.DANGER, body='The body of the card', overlay_dark=true) }}
+      {{ widgets.render_card(title='Loading state (dark)', color=ThemeColor.DANGER, body='The body of the card', overlay_dark=true) }}
     </div>
   </div>
 
   <h5 class="mb-2">Colors Variations</h5>
   <div class="row">
     <div class="col-md-3">
-      {{ widgets.render_card(title='Primary Outline', collapsable=true, color=THEME_COLOR.PRIMARY, body='The body of the card') }}
+      {{ widgets.render_card(title='Primary Outline', collapsable=true, color=ThemeColor.PRIMARY, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Success Outline', closable=true, color=THEME_COLOR.SUCCESS, body='The body of the card') }}
+      {{ widgets.render_card(title='Success Outline', closable=true, color=ThemeColor.SUCCESS, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Warning Outline', collapsable=true, color=THEME_COLOR.WARNING, body='The body of the card') }}
+      {{ widgets.render_card(title='Warning Outline', collapsable=true, color=ThemeColor.WARNING, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Danger Outline', color=THEME_COLOR.DANGER, body='The body of the card') }}
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      {{ widgets.render_card(title='Primary Outline', outline=true, collapsable=true, color=THEME_COLOR.PRIMARY, body='The body of the card') }}
-    </div>
-    <div class="col-md-3">
-      {{ widgets.render_card(title='Success Outline', outline=true, closable=true, color=THEME_COLOR.SUCCESS, body='The body of the card') }}
-    </div>
-    <div class="col-md-3">
-      {{ widgets.render_card(title='Warning Outline', outline=true, collapsable=true, color=THEME_COLOR.WARNING, body='The body of the card') }}
-    </div>
-    <div class="col-md-3">
-      {{ widgets.render_card(title='Danger Outline', outline=true, color=THEME_COLOR.DANGER, body='The body of the card') }}
+      {{ widgets.render_card(title='Danger Outline', color=ThemeColor.DANGER, body='The body of the card') }}
     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
-      {{ widgets.render_card(title='Primary', collapsable=true, bg_color=THEME_COLOR.PRIMARY, body='The body of the card') }}
+      {{ widgets.render_card(title='Primary Outline', outline=true, collapsable=true, color=ThemeColor.PRIMARY, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Success', closable=true, bg_color=THEME_COLOR.SUCCESS, body='The body of the card') }}
+      {{ widgets.render_card(title='Success Outline', outline=true, closable=true, color=ThemeColor.SUCCESS, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Warning', collapsable=true, bg_color=THEME_COLOR.WARNING, body='The body of the card') }}
+      {{ widgets.render_card(title='Warning Outline', outline=true, collapsable=true, color=ThemeColor.WARNING, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Danger', bg_color=THEME_COLOR.DANGER, body='The body of the card') }}
+      {{ widgets.render_card(title='Danger Outline', outline=true, color=ThemeColor.DANGER, body='The body of the card') }}
     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
-      {{ widgets.render_card(title='Primary Gradient', collapsable=true, bg_color=THEME_COLOR.GRADIENT_PRIMARY, body='The body of the card') }}
+      {{ widgets.render_card(title='Primary', collapsable=true, bg_color=ThemeColor.PRIMARY, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Success Gradient', closable=true, bg_color=THEME_COLOR.GRADIENT_SUCCESS, body='The body of the card') }}
+      {{ widgets.render_card(title='Success', closable=true, bg_color=ThemeColor.SUCCESS, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Warning Gradient', collapsable=true, bg_color=THEME_COLOR.GRADIENT_WARNING, body='The body of the card') }}
+      {{ widgets.render_card(title='Warning', collapsable=true, bg_color=ThemeColor.WARNING, body='The body of the card') }}
     </div>
     <div class="col-md-3">
-      {{ widgets.render_card(title='Danger Gradient', bg_color=THEME_COLOR.GRADIENT_DANGER, body='The body of the card') }}
+      {{ widgets.render_card(title='Danger', bg_color=ThemeColor.DANGER, body='The body of the card') }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      {{ widgets.render_card(title='Primary Gradient', collapsable=true, bg_color=ThemeColor.GRADIENT_PRIMARY, body='The body of the card') }}
+    </div>
+    <div class="col-md-3">
+      {{ widgets.render_card(title='Success Gradient', closable=true, bg_color=ThemeColor.GRADIENT_SUCCESS, body='The body of the card') }}
+    </div>
+    <div class="col-md-3">
+      {{ widgets.render_card(title='Warning Gradient', collapsable=true, bg_color=ThemeColor.GRADIENT_WARNING, body='The body of the card') }}
+    </div>
+    <div class="col-md-3">
+      {{ widgets.render_card(title='Danger Gradient', bg_color=ThemeColor.GRADIENT_DANGER, body='The body of the card') }}
     </div>
   </div>
 {% endblock %}
