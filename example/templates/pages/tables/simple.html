@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% import "adminlte_full/widgets.html" as widgets %}
+{% import "adminlte_full/macros/bootstrap4.html" as bootstrap %}
+
+{% block page_title %}Simple Tables{% endblock %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-md-6">
+      {% call widgets.render_card(title='Bordered Table') %}
+        <div class="card-body">
+          {% call(row) widgets.render_table(auto_number=true, headers=task_table.headers, data=task_table.data, table_class='table-bordered') %}
+            <td>{{ row.task }}</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-{{ row.color }}" style="width: {{ row.progress }}%"></div>
+              </div>
+            </td>
+            <td style="width: 40px"><span class="badge bg-{{ row.color }}">{{ row.progress }}%</span></td>
+          {% endcall %}
+        </div>
+        <div class="card-footer clearfix">
+          {{ bootstrap.render_pagination(pages, pagination_class='pagination-sm m-0 float-right') }}
+        </div>
+      {% endcall %}
+
+      {% call widgets.render_card(title='Condensed Full Width Table') %}
+        <div class="card-body p-0">
+          {% call(row) widgets.render_table(auto_number=true, headers=task_table.headers, data=task_table.data, table_class='table-sm') %}
+            <td>{{ row.task }}</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-{{ row.color }}" style="width: {{ row.progress }}%"></div>
+              </div>
+            </td>
+            <td style="width: 40px"><span class="badge bg-{{ row.color }}">{{ row.progress }}%</span></td>
+          {% endcall %}
+        </div>
+      {% endcall %}
+    </div>
+
+    <div class="col-md-6">
+      {% call widgets.render_card_wrapper() %}
+        <div class="card-header">
+          <h3 class="card-title">Simple Full Width Table</h3>
+          <div class="card-tools">
+            {{ bootstrap.render_pagination(pages, pagination_class='pagination-sm float-right') }}
+          </div>
+        </div>
+        <div class="card-body p-0">
+          {% call(row) widgets.render_table(auto_number=true, headers=task_table.headers, data=task_table.data) %}
+            <td>{{ row.task }}</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-{{ row.color }}" style="width: {{ row.progress }}%"></div>
+              </div>
+            </td>
+            <td style="width: 40px"><span class="badge bg-{{ row.color }}">{{ row.progress }}%</span></td>
+          {% endcall %}
+        </div>
+      {% endcall %}
+
+      {% call widgets.render_card(title='Striped Full Width Table') %}
+        <div class="card-body p-0">
+          {% call(row) widgets.render_table(auto_number=true, headers=task_table.headers, data=task_table.data, table_class='table-striped') %}
+            <td>{{ row.task }}</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-{{ row.color }}" style="width: {{ row.progress }}%"></div>
+              </div>
+            </td>
+            <td style="width: 40px"><span class="badge bg-{{ row.color }}">{{ row.progress }}%</span></td>
+          {% endcall %}
+        </div>
+      {% endcall %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {% call widgets.render_card_wrapper() %}
+        <div class="card-header">
+          <h3 class="card-title">Responsive Hover Table</h3>
+          <div class="card-tools">
+            {# {{ bootstrap.field(form_group_class='input-group input-group-sm') }} #}
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive p-0">
+          {{ widgets.render_data_table(headers=user_table.headers, data=user_table.data, table_class='table-hover text-nowrap') }}
+        </div>
+      {% endcall %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      {% call widgets.render_card_wrapper() %}
+        <div class="card-header">
+          <h3 class="card-title">Fixed Header Table</h3>
+          <div class="card-tools">
+            <div class="input-group input-group-sm" style="width: 150px;">
+              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive p-0" style="height: 300px;">
+          {{ widgets.render_data_table(headers=user_table.headers, data=user_table.data, table_class='table-head-fixed text-nowrap') }}
+        </div>
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

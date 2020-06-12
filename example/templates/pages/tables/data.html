@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% import "adminlte_full/widgets.html" as widgets %}
+
+{% block page_title %}DataTables{% endblock %}
+
+{% block page_content %}
+  <div class="row">
+    <div class="col-12">
+      {% call widgets.render_card(title='DataTable with minimal features & hover style') %}
+        <div class="card-body">
+          {{ widgets.render_data_table
+             (
+               table_id='example1',
+               table_class='table-bordered table-hover',
+               auto_number=true,
+               headers=browser_table.headers.values(),
+               data=browser_table.data
+             )
+          }}
+        </div>
+      {% endcall %}
+
+      {% call widgets.render_card(title='DataTable with default features') %}
+        <div class="card-body">
+          {{ widgets.render_data_table
+             (
+               table_id='example2',
+               table_class='table-bordered table-hover table-striped',
+               headers=browser_table.headers,
+               data=browser_table.data_dict
+             )
+          }}
+        </div>
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  {{ super() }}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ url_for('adminlte_full.static', filename='plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('adminlte_full.static', filename='plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+{% endblock %}
+
+{% block javascript %}
+  {{ super() }}
+  <!-- DataTables -->
+  <script src="{{ url_for('adminlte_full.static', filename='plugins/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ url_for('adminlte_full.static', filename='plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+  <script src="{{ url_for('adminlte_full.static', filename='plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+  <script src="{{ url_for('adminlte_full.static', filename='plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+{% endblock %}
+
+{% block javascript_inline %}
+  $(function () {
+    $("#example1").DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    $('#example2').DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+  });
+{% endblock %}

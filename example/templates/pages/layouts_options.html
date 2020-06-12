@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% import "adminlte_full/widgets.html" as widgets %}
+
+{% block page_title %}{{ title }} Layout{% endblock %}
+
+{% block body_attributes %} class="hold-transition {{ layout|join(' ') }}"{% endblock %}
+
+{% block page_content %}
+  {% call widgets.render_card('How to use', color=THEME_COLOR.PRIMARY, outline=true) %}
+    <div class="card-body">
+      <p>In the application settings, set the parameter <code>ADMINLTE_LAYOUT</code> to:</p>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Layout</th>
+          <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Top Navigation</td>
+            <td>
+              <p><code>ThemeLayout.TOP_NAV | ThemeLayout.COLLAPSED_SIDEBAR</code></p>
+              <p>Also disable sidebar: <code>ADMINLTE_MAIN_SIDEBAR_ENABLED = False</code></p>
+            </td>
+          </tr>
+          <tr>
+            <td>Top Navigation + Sidebar</td>
+            <td>
+              <code>ThemeLayout.TOP_NAV | ThemeLayout.COLLAPSED_SIDEBAR</code>
+            </td>
+          </tr>
+          <tr>
+            <td>Boxed</td>
+            <td><code>ThemeLayout.DEFAULT | ThemeLayout.BOXED</code></td>
+          </tr>
+          <tr>
+            <td>Fixed Sidebar</td>
+            <td><code>ThemeLayout.DEFAULT | ThemeLayout.FIXED_SIDEBAR</code></td>
+          </tr>
+          <tr>
+            <td>Fixed Navbar</td>
+            <td><code>ThemeLayout.DEFAULT | ThemeLayout.FIXED_TOP_NAV</code></td>
+          </tr>
+          <tr>
+            <td>Fixed Footer</td>
+            <td><code>ThemeLayout.DEFAULT | ThemeLayout.FIXED_FOOTER</code></td>
+          </tr>
+          <tr>
+            <td>Collapsed Sidebar</td>
+            <td><code>ThemeLayout.DEFAULT | ThemeLayout.COLLAPSED_SIDEBAR</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% endcall %}
+{% endblock %}
