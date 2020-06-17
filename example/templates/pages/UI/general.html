@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "adminlte_full/base.html" %}
 {% import "adminlte_full/macros/widgets.html" as widgets %}
 
 {% macro palette_set(title, color, hex, light=false) %}
@@ -10,6 +10,18 @@
 {% endmacro %}
 
 {% block page_title %}General UI{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+  {{ bootstrap.breadcrumb(title='Twitter', icon='fab fa-twitter', url='https://twitter.com') }}
+  {{ bootstrap.breadcrumb(title='Log in', url=adminlte.create_url(config.ADMINLTE_LOGIN_ENDPOINT)) }}
+  {{ bootstrap.breadcrumb(title='&#127932;', url=adminlte.create_url(config.ADMINLTE_LOGIN_ENDPOINT)) }}
+  {% call bootstrap.breadcrumb() %}
+    <a href="#">
+      <img src="http://latex.codecogs.com/gif.latex?1+sin(x)" border="0">
+    </a>
+  {% endcall %}
+{% endblock breadcrumb %}
 
 {% block page_content %}
   {% call widgets.render_card('Color Palette', card_class='color-palette-box') %}
