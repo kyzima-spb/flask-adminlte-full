@@ -1,12 +1,13 @@
+import os
 import pkg_resources
 
 from adminlte_base import (
-    AbstractManager, FlashedMessage, ThemeColor, ThemeLayout, DEFAULT_SETTINGS
+    AbstractManager, FlashedMessage, ThemeColor, ThemeLayout, DEFAULT_SETTINGS, FlashedMessageLevel
 )
 from adminlte_base import filters
 from flask import (
     Blueprint, current_app, url_for, request,
-    render_template, get_flashed_messages
+    render_template, get_flashed_messages, flash
 )
 # from flask_assets import Environment, Bundle
 from flask_gravatar import Gravatar
@@ -14,25 +15,48 @@ from flask_login import current_user
 from werkzeug.exceptions import HTTPException
 
 
+class Flash(object):
+    def _log(self, message, level):
+        return flash(message, level)
+
+    def debug(self, message):
+        return self._log(message, FlashedMessageLevel.DEBUG)
+
+    def error(self, message):
+        return self._log(message, FlashedMessageLevel.ERROR)
+
+    def info(self, message):
+        return self._log(message, FlashedMessageLevel.INFO)
+
+    def success(self, message):
+        return self._log(message, FlashedMessageLevel.SUCCESS)
+
+    def warning(self, message):
+        return self._log(message, FlashedMessageLevel.WARNING)
+
+
 class Manager(AbstractManager):
     def create_url(self, endpoint, *endpoint_args, **endpoint_kwargs):
         return url_for(endpoint, **endpoint_kwargs)
-
-    def get_menu(self, program_name, active_path=None):
-        return super().get_menu(program_name, active_path or request.path)
 
     def get_flash_messages(self):
         for level, message in get_flashed_messages(with_categories=True):
             yield FlashedMessage(level, message, level)
 
     def static(self, filename):
-        return url_for('adminlte_full.static', filename=filename)
+        asset = url_for('adminlte_full.static', filename=filename)
+
+        if os.path.exists(current_app.static_folder + asset):
+            return current_app.static_url_path + asset
+
+        return asset
 
 
 class AdminLTE(object):
     def __init__(self, app=None):
         self.app = app
         self.manager = Manager()
+        self.flash = Flash()
         self.gravatar = Gravatar(default='mp')
 
         if app is not None:
@@ -45,10 +69,12 @@ class AdminLTE(object):
         app.extensions['adminlte_full'] = self
 
         for name, value in DEFAULT_SETTINGS.items():
-            self.app.config.setdefault(name, value)
+            app.config.setdefault(name, value)
 
         # assets.init_app(app)
         self.gravatar.init_app(app)
+        self.manager.user_getter(self.user_getter)
+        self.manager.home_page = app.config['ADMINLTE_HOME_PAGE']
 
         self.register_blueprint(app)
 
@@ -63,13 +89,9 @@ class AdminLTE(object):
             return dict(
                 adminlte=self.manager,
                 adminlte_user=self.manager.user,
-                static=self.manager.static,
-                url=self.manager.create_url,
                 ThemeColor=ThemeColor,
                 ThemeLayout=ThemeLayout,
             )
-
-        self.manager.user_getter(self.user_getter)
 
     def error_page(self, err):
         """Page for all HTTP errors."""
