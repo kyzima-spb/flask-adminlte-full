@@ -93,6 +93,10 @@ class AdminLTE(object):
                 ThemeLayout=ThemeLayout,
             )
 
+        if not hasattr(app.jinja_env, 'install_gettext_callables'):
+            app.jinja_env.add_extension('jinja2.ext.i18n')
+            app.jinja_env.install_null_translations()
+
     def error_page(self, err):
         """Page for all HTTP errors."""
         template = f'adminlte_full/http_error_page.html'
