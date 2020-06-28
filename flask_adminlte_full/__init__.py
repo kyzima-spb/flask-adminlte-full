@@ -95,7 +95,7 @@ class AdminLTE(object):
 
         if not hasattr(app.jinja_env, 'install_gettext_callables'):
             app.jinja_env.add_extension('jinja2.ext.i18n')
-            app.jinja_env.install_null_translations()
+            app.jinja_env.install_null_translations(True)
 
     def error_page(self, err):
         """Page for all HTTP errors."""
