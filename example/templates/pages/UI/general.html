@@ -11,7 +11,7 @@
 
 {% block page_title %}General UI{% endblock %}
 
-{% block breadcrumb %}
+{% block breadcrumbs %}
   {{ super() }}
   {{ bootstrap.breadcrumb(title='Twitter', icon='fab fa-twitter', url='https://twitter.com') }}
   {{ bootstrap.breadcrumb(title='Log in', url=adminlte.create_url(config.ADMINLTE_LOGIN_ENDPOINT)) }}
@@ -21,7 +21,7 @@
       <img src="http://latex.codecogs.com/gif.latex?1+sin(x)" border="0">
     </a>
   {% endcall %}
-{% endblock breadcrumb %}
+{% endblock breadcrumbs %}
 
 {% block page_content %}
   {% call widgets.render_card('Color Palette', card_class='color-palette-box') %}

@@ -2,12 +2,12 @@
 {% import "adminlte_full/macros/widgets.html" as widgets %}
 {% import 'adminlte_full/macros/bootstrap4.html' as bootstrap %}
 
-{% block breadcrumb %}
+{% block breadcrumbs %}
   {{ super() }}
-  {{ bootstrap.breadcrumb(title='Widgets', is_active=True) }}
-{% endblock breadcrumb %}
+  {{ bootstrap.breadcrumb(title=_('Widgets'), is_active=True) }}
+{% endblock breadcrumbs %}
 
-{% block page_title %}Widgets{% endblock %}
+{% block page_title %}{{ _('Widgets') }}{% endblock %}
 
 {% block page_content %}
   <h5 class="mb-2">Info Box</h5>
