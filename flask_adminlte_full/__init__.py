@@ -13,6 +13,10 @@ from flask import (
 from flask_gravatar import Gravatar
 from flask_login import current_user
 from werkzeug.exceptions import HTTPException
+from werkzeug.local import LocalProxy
+
+
+current_context = LocalProxy(lambda: request or current_app or None)
 
 
 class Flash(object):
@@ -38,6 +42,30 @@ class Flash(object):
 class Manager(AbstractManager):
     def create_url(self, endpoint, *endpoint_args, **endpoint_kwargs):
         return url_for(endpoint, **endpoint_kwargs)
+
+    def get_locale(self):
+        if not current_context:
+            return None
+
+        if hasattr(current_context, 'adminlte_locale'):
+            return current_context.adminlte_locale
+
+        locale = super().get_locale()
+        current_context.adminlte_locale = locale
+
+        return locale
+
+    def get_translations(self):
+        if not current_context:
+            return super().get_translations()
+
+        translations = getattr(current_context, 'adminlte_translations', None)
+
+        if translations is None:
+            translations = super().get_translations()
+            current_context.adminlte_translations = translations
+
+        return translations
 
     def get_flash_messages(self):
         for level, message in get_flashed_messages(with_categories=True):
@@ -75,6 +103,7 @@ class AdminLTE(object):
         self.gravatar.init_app(app)
         self.manager.user_getter(self.user_getter)
         self.manager.home_page = app.config['ADMINLTE_HOME_PAGE']
+        self.init_locale(app)
 
         self.register_blueprint(app)
 
@@ -96,6 +125,15 @@ class AdminLTE(object):
         if not hasattr(app.jinja_env, 'install_gettext_callables'):
             app.jinja_env.add_extension('jinja2.ext.i18n')
             app.jinja_env.install_null_translations(True)
+
+    def init_locale(self, app):
+        babel = app.extensions.get('babel')
+
+        if babel is not None:
+            self.manager.default_locale = str(babel.default_locale)
+            self.manager.locale_getter(lambda: babel.locale_selector_func and babel.locale_selector_func())
+        else:
+            self.manager.default_locale = app.config.get('ADMINLTE_DEFAULT_LOCALE')
 
     def error_page(self, err):
         """Page for all HTTP errors."""
