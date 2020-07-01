@@ -1,0 +1,189 @@
+{
+  "menu": [
+    {
+      "title": "Main Menu",
+      "program_name": "main_menu",
+      "items": [
+        {
+          "title": "MAIN MENU",
+          "type": "header",
+          "url": "#"
+        },
+        {
+          "title": "Widgets",
+          "endpoint": "demo.widgets",
+          "icon": "fas fa-th"
+        },
+        {
+          "title": "Layout Options",
+          "url":  "#",
+          "icon": "fas fa-copy",
+          "items": [
+            {
+              "title": "Top Navigation",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=top-nav"
+            },
+            {
+              "title": "Boxed",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=boxed"
+            },
+            {
+              "title": "Fixed Sidebar",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=fixed-sidebar"
+            },
+            {
+              "title": "Fixed Navbar",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=fixed-top-nav"
+            },
+            {
+              "title": "Fixed Footer",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=fixed-footer"
+            },
+            {
+              "title": "Collapsed Sidebar",
+              "endpoint": "demo.layouts_options",
+              "endpoint_kwargs": "layout=collapsed-sidebar"
+            }
+          ]
+        },
+        {
+          "title": "UI Elements",
+          "url": "#",
+          "icon": "fas fa-tree",
+          "items": [
+            {
+              "title": "General",
+              "endpoint": "demo.ui_general"
+            }
+          ]
+        },
+        {
+          "title": "Tables",
+          "url": "#",
+          "icon": "fas fa-table",
+          "items": [
+            {
+              "title": "Simple Tables",
+              "endpoint": "demo.tables_simple"
+            },
+            {
+              "title": "DataTables",
+              "endpoint": "demo.tables_data"
+            }
+          ]
+        },
+        {
+          "title": "EXAMPLES",
+          "type": "header",
+          "url": "#"
+        },
+        {
+          "title": "Pages",
+          "url": "#",
+          "icon": "fas fa-book"
+        },
+        {
+          "title": "Extras",
+          "url": "#",
+          "icon": "far fa-plus-square",
+          "items": [
+            {
+              "title": "Login",
+              "endpoint": "auth.login"
+            },
+            {
+              "title": "Lockscreen",
+              "endpoint": "auth.lockscreen"
+            },
+            {
+              "title": "Error 404",
+              "endpoint": "demo.error_page",
+              "endpoint_kwargs": "code=404"
+            },
+            {
+              "title": "Error 500",
+              "endpoint": "demo.error_page",
+              "endpoint_kwargs": "code=500"
+            }
+          ]
+        },
+        {
+          "title": "MISCELLANEOUS",
+          "type": "header",
+          "url": "#"
+        },
+        {
+          "title": "Documentation",
+          "url": "https://adminlte.io/docs/3.0",
+          "icon": "fas fa-file"
+        },
+        {
+          "title": "MULTI LEVEL EXAMPLE",
+          "type": "header",
+          "url": "#"
+        },
+        {
+          "title": "Level 1",
+          "url": "#",
+          "icon": "fas fa-circle"
+        },
+        {
+          "title": "Level 1",
+          "url": "#",
+          "icon": "fas fa-circle",
+          "items": [
+            {
+              "title": "Level 2",
+              "url": "#"
+            },
+            {
+              "title": "Level 2",
+              "url": "#",
+              "items": [
+                {
+                  "title": "Level 3",
+                  "url": "#",
+                  "icon": "far fa-dot-circle"
+                },
+                {
+                  "title": "Level 3",
+                  "url": "#",
+                  "icon": "far fa-dot-circle"
+                },
+                {
+                  "title": "Level 3",
+                  "url": "#",
+                  "icon": "far fa-dot-circle"
+                }
+              ]
+            },
+            {
+              "title": "Level 2",
+              "url": "#"
+            }
+          ]
+        },
+        {
+          "title": "Level 1",
+          "url": "#",
+          "icon": "fas fa-circle"
+        }
+      ]
+    },
+    {
+      "title": "Navbar Menu",
+      "program_name": "navbar_menu",
+      "items": [
+        {
+          "title": "Home",
+          "endpoint": "site.index"
+        }
+      ]
+    }
+  ]
+}

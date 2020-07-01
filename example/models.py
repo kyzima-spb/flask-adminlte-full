@@ -1,13 +1,14 @@
 from adminlte_base.contrib.sqla import create_entity_menu_item, create_entity_menu
-from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from .extensions import bcrypt
-
 
 db = SQLAlchemy()
+bcrypt = Bcrypt()
+
 
 MenuItem = create_entity_menu_item(db)
 Menu = create_entity_menu(db)
@@ -22,6 +23,19 @@ class User(db.Model, UserMixin):
     lastname = Column(String(255), default='', nullable=False)
     locale = Column(String(20), default='', nullable=False)
 
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self._password, password)
+
+    def get_full_name(self):
+        return f'{self.firstname} {self.lastname}'.strip() or self.email
+
+    def get_id(self):
+        return self.id
+
+    @property
+    def is_active(self):
+        return self.active
+
     @hybrid_property
     def password(self):
         return self._password
@@ -29,6 +43,3 @@ class User(db.Model, UserMixin):
     @password.setter
     def password(self, value):
         self._password = bcrypt.generate_password_hash(value).decode('utf-8')
-
-    def get_full_name(self):
-        return f'{self.firstname} {self.lastname}'.strip() or self.email

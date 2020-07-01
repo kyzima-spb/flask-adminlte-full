@@ -1,0 +1,36 @@
+from adminlte_base import ThemeLayout, ThemeColor
+from flask_babel import lazy_gettext
+
+
+SECRET_KEY = 'Secret Key'
+
+SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+SQLALCHEMY_ENGINE_OPTIONS = {
+   'execution_options': {
+       'autocommit': True,
+   }
+}
+
+BABEL_DEFAULT_LOCALE = 'en_US'
+ADMINLTE_LANGUAGE_SWITCHER_ENABLED = True
+ADMINLTE_CHANGE_LANGUAGE_ENDPOINT = 'site.change_language'
+
+# ADMINLTE_LAYOUT = ThemeLayout.DEFAULT | ThemeLayout.COLLAPSED_SIDEBAR
+# ADMINLTE_LAYOUT = ThemeLayout.TOP_NAV | ThemeLayout.COLLAPSED_SIDEBAR | ThemeLayout.FIXED_TOP_NAV
+# ADMINLTE_MAIN_SIDEBAR_ENABLED = False
+ADMINLTE_SITE_TITLE = 'Demo app'
+ADMINLTE_HOME_PAGE = ('/blank', lazy_gettext('Dashboard'))
+ADMINLTE_LEGACY_USER_MENU = True
+
+ADMINLTE_SECOND_SIDEBAR_ENABLED = True
+# ADMINLTE_SIDEBAR_COLOR = ThemeColor.ORANGE
+# ADMINLTE_SIDEBAR_LIGHT = True
+
+# ADMINLTE_ALLOW_SOCIAL_AUTH = True
+ADMINLTE_REMEMBER_ME = True
+ADMINLTE_TERMS_ENDPOINT = 'site.terms'
+
+ADMINLTE_MESSAGES_ENABLED = True
+ADMINLTE_NOTIFICATIONS_ENABLED = True
+ADMINLTE_TASKS_ENABLED = True

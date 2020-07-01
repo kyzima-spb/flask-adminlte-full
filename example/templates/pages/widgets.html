@@ -160,7 +160,7 @@
   <div class="row">
     <div class="col-md-3">
       {{ widgets.render_card(title='Card Refresh',
-                             data_source=url_for('widgets'),
+                             data_source=url_for('demo.widgets'),
                              refreshable_options='data-source-selector="#card-refresh-content"',
                              color=ThemeColor.PRIMARY,
                              body='The body of the card') }}
@@ -173,7 +173,7 @@
                              maximizable=true,
                              collapsable=true,
                              closable=true,
-                             data_source=url_for('widgets'),
+                             data_source=url_for('demo.widgets'),
                              refreshable_options='data-source-selector="#card-refresh-content" data-load-on-init="false"',
                              color=ThemeColor.SUCCESS,
                              body='The body of the card') }}
