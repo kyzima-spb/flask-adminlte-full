@@ -1,4 +1,14 @@
+import os
+
 from setuptools import setup, find_packages
+
+
+def read_file(filename):
+    with open(os.path.join(os.path.dirname(__file__), filename)) as f:
+        return f.read()
+
+
+readme = read_file('README.rst')
 
 
 setup(
@@ -7,7 +17,8 @@ setup(
         'relative_to': __file__,
         'local_scheme': lambda version: '',
     },
-    description='This Flask extension is port the AdminLTE Template for easy integration into Flask Framework.',
+    description='An extension for Flask that integrates the AdminLTE template with most of the features.',
+    long_description=readme,
     keywords='adminlte adminlte3 flask templating html',
     url='https://github.com/kyzima-spb/flask-adminlte-full',
     license='MIT',

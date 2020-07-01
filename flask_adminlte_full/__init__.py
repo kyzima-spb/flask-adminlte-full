@@ -81,6 +81,11 @@ class Manager(AbstractManager):
 
 
 class AdminLTE(object):
+    """
+    Attributes:
+        app (flask.Flask): Application object.
+        manager (Manager): Manager for accessing AdminLTE features.
+    """
     def __init__(self, app=None):
         self.app = app
         self.manager = Manager()
@@ -91,6 +96,7 @@ class AdminLTE(object):
             self.init_app(app)
 
     def init_app(self, app):
+        """Initializes the extension."""
         if not hasattr(app, 'extensions'):
             app.extensions = {}
 
@@ -127,6 +133,7 @@ class AdminLTE(object):
             app.jinja_env.install_null_translations(True)
 
     def init_locale(self, app):
+        """Initializes the manager to use locales."""
         babel = app.extensions.get('babel')
 
         if babel is not None:
