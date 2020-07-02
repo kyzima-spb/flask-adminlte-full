@@ -42,17 +42,17 @@ def load_user(user_id):
 
 @adminlte.manager.menu_loader
 class MyMenuLoader(MenuLoader):
-    def navbar_menu(self, active_path=None):
+    def navbar_menu(self):
         data = Menu.query.filter_by(program_name='navbar_menu').first()
 
         if data:
-            return self._create(data, active_path)
+            return self._create(data, request.path)
 
-    def sidebar_menu(self, active_path=None):
+    def sidebar_menu(self):
         data = Menu.query.filter_by(program_name='main_menu').first()
 
         if data:
-            return self._create(data, active_path)
+            return self._create(data, request.path)
 
 
 @adminlte.manager.messages_loader
