@@ -1,7 +1,6 @@
 {
   "menu": [
     {
-      "title": "Main Menu",
       "program_name": "main_menu",
       "items": [
         {
@@ -176,7 +175,6 @@
       ]
     },
     {
-      "title": "Navbar Menu",
       "program_name": "navbar_menu",
       "items": [
         {

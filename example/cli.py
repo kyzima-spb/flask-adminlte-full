@@ -3,26 +3,31 @@ import json
 import click
 from flask.cli import AppGroup
 
-from .models import db, Menu, MenuItem
+from .models import db, MenuLink, Menu, MenuItem
 
 
 init_group = AppGroup('init')
 
 
 def create_menu_items(menu, items, parent=None):
-    for i in items:
-        children = i.pop('items', [])
-        attrs = {'menu': menu, **i}
+    for attrs in items:
+        children = attrs.pop('items', [])
+        link = MenuLink(**attrs)
+        db.session.add(link)
+        db.session.commit()
+
+        item = MenuItem(menu_id=menu.id, link=link)
 
         if parent is not None:
-            attrs['parent'] = parent
+            item.parent = parent
 
-        item = MenuItem(**attrs)
+        # menu.items.append(item)
+
         db.session.add(item)
         db.session.commit()
 
         if children:
-            create_menu_items(menu, children, item)
+            create_menu_items(menu, children, link)
 
 
 @init_group.command()
@@ -34,7 +39,7 @@ def sqla():
     for menu in data.get('menu'):
         items = menu.pop('items', [])
 
-        menu = Menu(**menu)
+        menu = Menu()
         db.session.add(menu)
         db.session.commit()
 
