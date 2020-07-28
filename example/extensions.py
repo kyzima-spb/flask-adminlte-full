@@ -43,13 +43,15 @@ def load_user(user_id):
 @adminlte.manager.menu_loader
 class MyMenuLoader(MenuLoader):
     def navbar_menu(self):
-        data = Menu.query.filter_by(program_name='navbar_menu').first()
+        data = Menu.query.get(2)
+        # data = Menu.query.filter_by(program_name='navbar_menu').first()
 
         if data:
             return self._create(data, request.path)
 
     def sidebar_menu(self):
-        data = Menu.query.filter_by(program_name='main_menu').first()
+        data = Menu.query.get(1)
+        # data = Menu.query.filter_by(program_name='main_menu').first()
 
         if data:
             return self._create(data, request.path)

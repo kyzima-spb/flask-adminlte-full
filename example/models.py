@@ -1,4 +1,4 @@
-from adminlte_base.contrib.sqla import create_entity_menu_item, create_entity_menu
+from adminlte_base.contrib.sqla import create_entity_menu_link, create_entity_menu_item, create_entity_menu
 from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
@@ -10,8 +10,9 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 
 
-MenuItem = create_entity_menu_item(db)
+MenuLink = create_entity_menu_link(db)
 Menu = create_entity_menu(db)
+MenuItem = create_entity_menu_item(db)
 
 
 class User(db.Model, UserMixin):
