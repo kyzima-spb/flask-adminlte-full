@@ -39,7 +39,7 @@ def sqla():
     for menu in data.get('menu'):
         items = menu.pop('items', [])
 
-        menu = Menu()
+        menu = Menu(title=menu['title'])
         db.session.add(menu)
         db.session.commit()
 

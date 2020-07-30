@@ -1,12 +1,12 @@
 {
   "menu": [
     {
+      "title": "Главное меню",
       "program_name": "main_menu",
       "items": [
         {
           "title": "MAIN MENU",
-          "type": "header",
-          "url": "#"
+          "type": "header"
         },
         {
           "title": "Widgets",
@@ -175,6 +175,7 @@
       ]
     },
     {
+      "title": "Navigation Bar Menu",
       "program_name": "navbar_menu",
       "items": [
         {
